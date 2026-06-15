@@ -1,3 +1,15 @@
+<!--
+  NOTE (cross-validated against decrypted real saves, 25 instances, sizes 4 - 20 bytes):
+    - The `EstimatedPopIn400Blocks` 2-byte block is gated on **OwnerID != 31 AND
+      `HabAndMineralConcentrationsIncluded` (bit 1)** — a conjunction. The
+      `iif([PlanetIDAndOwnerID/OwnerID]=31,0,2)` expression below is incomplete: when bit 1
+      is clear, EstimatedPop is absent even for owned planets.
+    - The starbase slot id is **1 byte** in type 14 (the field below is correct; flagging it
+      as a structural difference vs type 13, where the same field is 4 bytes with damage).
+    - There is **no `RouteTo` field** in type 14 (type 13 has one, gated on bit 14).
+    - Minimal foreign records are just 4 bytes (header + flags, no hab/minerals).
+  See ../docs/planets.md for the full gated layout.
+-->
 <Structure14 description="Partial Planetary Information">
   <PlanetIDAndOwnerID bytes="2">
     <PlanetID bits="11"/>

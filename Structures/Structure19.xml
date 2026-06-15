@@ -1,3 +1,11 @@
+<!--
+  NOTE (cross-validated against decrypted real saves, 207 instances, all exactly 18 bytes):
+    - The record is **18 bytes**, not 8. A 10-byte task-parameter block follows byte 7
+      (its per-task layout is not yet fully decoded; the bytes are consumed in full).
+    - `WarpSpeed` is in **byte 7 low nibble** (not byte 6). The byte-6 low nibble is the
+      Task code as documented below; the byte-6 high nibble is task-flags.
+  See ../docs/fleets.md (type 19) for the corrected layout.
+-->
 <Structure19 Description="Waypoint Info">
   <X bytes="2"/>
   <Y bytes="2"/>
@@ -6,5 +14,9 @@
     <Task bits="4" lookup="(no task here),Transport,Colonize,Remote Mining,Merge with Fleet,Scrap Fleet,Lay Minefield,Patrol,Rout,Transfer Fleet,?,??,???"/>
     <Unknown bits="4"/>
   </Unknown>
-  <Unknown bytes="1"/>
+  <Unknown bytes="1">
+    <WarpSpeed bits="4"/>
+    <Unknown bits="4"/>
+  </Unknown>
+  <TaskParameters bytes="10" Description="Order-specific (transport load/unload counts, mining target, etc.); per-field meaning not yet decoded"/>
 </Structure19>

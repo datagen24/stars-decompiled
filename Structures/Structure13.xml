@@ -1,3 +1,14 @@
+<!--
+  NOTE (cross-validated against decrypted real saves, 1108 instances):
+    - The 2-byte block holding `EstimatedPopIn400Blocks` is **conditional on ownership**
+      (present only when OwnerID != 31), not unconditional as shown below. Unowned planets
+      with leftover surface minerals carry the surface block but no EstimatedPop.
+    - The 1-byte `SurfaceLength` (and its 4 length-driven surface fields) is **conditional
+      on `PlanetInfo/SurfaceMinerals` (bit 13)**, not unconditional.
+    - The `EstimatedPop` value is in **400-colonist blocks** (× 400 = est. colonists); used
+      for the scanned/estimated figure shown on the planet panel.
+  See ../docs/planets.md for the gated layout and field-by-field validation.
+-->
 <Structure13 description="Planetary Information">
   <PlanetIDAndOwnerID bytes="2">
     <PlanetID bits="11"/>

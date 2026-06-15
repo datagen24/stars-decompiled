@@ -1,3 +1,11 @@
+<!--
+  NOTE (cross-validated against decrypted real saves, 326 full designs + 16 unknown stubs):
+    - `TotalBuilt` and `TotalRemaining` are **32-bit little-endian** integers. The XML below
+      models them as 2 bytes each with separate trailing `Unknown` 2-byte fields; in
+      practice those four bytes are a single u32 in each case.
+    - `ItemCategory` (in ShipSlot) is a **power-of-two category bitmask**; `0x0000` = empty slot.
+  See ../docs/designs.md (type 26) for the corrected layout.
+-->
 <Structure26 Description="Ship/Starbase Design Data">
   <Unknown bytes="2">
     <Unknown bits="2"/>

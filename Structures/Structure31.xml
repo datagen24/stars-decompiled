@@ -1,2 +1,19 @@
+<!--
+  NOTE (cross-validated against decrypted real saves, 30 instances):
+    Header recovered from data; the post-header replay-token body is opaque and not yet
+    decoded. `RecordLength@6 == block size` was true for all 30 instances.
+  See ../docs/designs.md (type 31) for the recovered header and validation notes.
+-->
 <Structure31 Description="Battle">
+  <BattleNumber bytes="1" Description="1-based within the turn"/>
+  <VersionOrTag bytes="1" Description="Observed constant 0x0C; hypothesis"/>
+  <Unknown bytes="1" Description="Observed constant 0x02; hypothesis"/>
+  <ParticipantCount bytes="1" Description="Observed 2 - 6"/>
+  <Unknown bytes="2" Description="Round count / flags; hypothesis"/>
+  <RecordLength bytes="2" Description="Equals block size for all 30 observed instances"/>
+  <Unknown bytes="2" Description="Covaries with length; hypothesis"/>
+  <LocationX bytes="2" Description="Galaxy coordinate range; hypothesis"/>
+  <LocationY bytes="2" Description="hypothesis"/>
+  <Unknown bytes="2"/>
+  <ReplayTokenStream bytes="*" Description="Participant table + event tokens driving the visual replay; not yet decoded"/>
 </Structure31>
