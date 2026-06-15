@@ -1,2 +1,12 @@
-<Structure21 Description="Unknown">
+<!--
+  NOTE (cross-validated against decrypted real saves, 27 instances):
+    Type 21 is the **fleet name** (per-fleet custom name override), not "Unknown".
+    Layout: 1-byte payload length (= block size - 1), followed by N StarsText-encoded
+    bytes. The block is always positioned in the stream between a fleet's last
+    waypoint (type 19/20) and the next fleet (type 16).
+  See ../docs/fleets.md (type 21) and ../docs/strings.md (StarsText) for details.
+-->
+<Structure21 Description="Fleet Name">
+  <NameLength bytes="1" Description="= block size - 1"/>
+  <Name bytes="[NameLength]" type="StarsText"/>
 </Structure21>

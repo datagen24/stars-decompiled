@@ -1,10 +1,16 @@
+<!--
+  NOTE (cross-validated against decrypted real saves, 492 instances, all exactly 8 bytes):
+    - `WarpSpeed` is in the byte-6 **HIGH** nibble (`warp = byte >> 4`, 0-11), not the low
+      nibble. The byte-6 low nibble has been observed as 0 in all samples.
+  See ../docs/fleets.md (type 20) for the corrected layout.
+-->
 <Structure20 Description="Waypoint Info">
   <X bytes="2"/>
   <Y bytes="2"/>
   <ObjectID bytes="2"/>
   <Unknown bytes="1">
     <Unknown bits="4"/>
-    <WarpSpeed bits="4"/>
+    <WarpSpeed bits="4" Description="Stored in the HIGH nibble of this byte (i.e. byte &gt;&gt; 4)"/>
   </Unknown>
   <Unknown bytes="1"/>
 </Structure20>

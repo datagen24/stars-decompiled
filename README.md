@@ -3,6 +3,17 @@ Decompiled Stars! Utilities
 
 Here are the decompiled sources to several Stars! utilities.  These are provided for reference in building out a Stars! API.
 
+## File Format Specifications
+
+In addition to the decompiled utility sources and PaulCr's `Structures/*.xml`, this fork
+adds markdown specifications of the Stars! save-file format in [`docs/`](docs/).
+
+These specs build on PaulCr's XML and were verified field-by-field against decrypted real
+saves; they also add coverage of areas the XML doesn't (file header, cipher, string encoding,
+`STARS.EXE` function map). See [`docs/README.md`](docs/README.md) for the index. Several
+`Structures/*.xml` files now carry inline correction comments where the data disagreed with
+the original XML — see the per-spec `## Corrections` callouts for evidence.
+
 ## Utilities
 
 ### StarsHostCreator / StarsHostCreator_StarsHostEditor
